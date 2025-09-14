@@ -1,0 +1,34 @@
+@using Soenneker.Quark.Enums.Colors
+@using Soenneker.Quark.ListItems
+@inherits Soenneker.Quark.Components.Element
+
+<ListItem @attributes="BuildAttributes()">
+	@ChildContent
+</ListItem>
+
+@code {
+    [Parameter]
+    public bool Active { get; set; }
+
+    [Parameter]
+    public bool Disabled { get; set; }
+
+    [Parameter]
+    public Color Color { get; set; } = Color.Primary;
+
+    protected override Dictionary<string, object> BuildAttributes()
+    {
+        Dictionary<string, object> attributes = base.BuildAttributes();
+
+        var baseClasses = "page-item";
+        if (Active)
+            baseClasses = $"{baseClasses} active";
+        if (Disabled)
+            baseClasses = $"{baseClasses} disabled";
+
+        attributes["class"] = AppendToClass(attributes.GetValueOrDefault("class")
+            ?.ToString(), baseClasses);
+
+        return attributes;
+    }
+}

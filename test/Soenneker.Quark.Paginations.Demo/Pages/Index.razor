@@ -1,0 +1,88 @@
+﻿@page "/"
+@using Microsoft.Extensions.Logging
+
+@inject ILogger<Index> Logger
+
+<img src="https://user-images.githubusercontent.com/4441470/224455560-91ed3ee7-f510-4041-a8d2-3fc093025112.png" />
+<h1>Soenneker.Quark.Paginations demo</h1>
+<p>Interactive examples of the Quark pagination components.</p>
+<br />
+
+<div style="max-width: 900px; margin: 0 auto; display: grid; gap: 2rem;">
+    <section>
+        <h3>Basic pagination</h3>
+        <Pagination>
+            <PaginationItem Disabled="@(_currentPage == 1)">
+                <PaginationLink Disabled="@(_currentPage == 1)" OnClick="@(_ => GoToPrevious())">Previous</PaginationLink>
+            </PaginationItem>
+
+            @for (int i = 1; i <= _totalPages; i++)
+            {
+                int pageNumber = i;
+                <PaginationItem Active="@(_currentPage == pageNumber)">
+                    <PaginationLink Disabled="@(_currentPage == pageNumber)" OnClick="@(_ => GoToPage(pageNumber))">@pageNumber</PaginationLink>
+                </PaginationItem>
+            }
+
+            <PaginationItem Disabled="@(_currentPage == _totalPages)">
+                <PaginationLink Disabled="@(_currentPage == _totalPages)" OnClick="@(_ => GoToNext())">Next</PaginationLink>
+            </PaginationItem>
+        </Pagination>
+        <div style="margin-top: .5rem; color: #64748b;">Current page: <strong>@_currentPage</strong></div>
+    </section>
+
+    <section>
+        <h3>Sizes</h3>
+        <div style="display: grid; gap: .75rem;">
+            <Pagination Size="Size.Small">
+                <PaginationItem Active="true"><PaginationLink>1</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink>3</PaginationLink></PaginationItem>
+            </Pagination>
+
+            <Pagination>
+                <PaginationItem Active="true"><PaginationLink>1</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink>3</PaginationLink></PaginationItem>
+            </Pagination>
+
+            <Pagination Size="Size.Large">
+                <PaginationItem Active="true"><PaginationLink>1</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink>3</PaginationLink></PaginationItem>
+            </Pagination>
+        </div>
+    </section>
+
+    <section>
+        <h3>Vertical</h3>
+        <Pagination Vertical="true">
+            <PaginationItem Active="true"><PaginationLink>1</PaginationLink></PaginationItem>
+            <PaginationItem><PaginationLink>2</PaginationLink></PaginationItem>
+            <PaginationItem><PaginationLink>3</PaginationLink></PaginationItem>
+        </Pagination>
+    </section>
+</div>
+
+@code{
+    private int _currentPage = 1;
+    private int _totalPages = 5;
+
+    private void GoToPrevious()
+    {
+        if (_currentPage > 1)
+            _currentPage--;
+    }
+
+    private void GoToNext()
+    {
+        if (_currentPage < _totalPages)
+            _currentPage++;
+    }
+
+    private void GoToPage(int page)
+    {
+        if (page >= 1 && page <= _totalPages)
+            _currentPage = page;
+    }
+}
