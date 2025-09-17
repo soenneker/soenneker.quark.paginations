@@ -37,8 +37,7 @@
         if (Vertical)
             baseClasses = $"{baseClasses} flex-column";
 
-        attributes["class"] = AppendToClass(attributes.GetValueOrDefault("class")
-            ?.ToString(), baseClasses);
+        AppendToClassAttr(attributes, baseClasses);
 
         return attributes;
     }

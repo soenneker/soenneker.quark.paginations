@@ -25,8 +25,7 @@
         if (Disabled)
             baseClasses = $"{baseClasses} disabled";
 
-        attributes["class"] = AppendToClass(attributes.GetValueOrDefault("class")
-            ?.ToString(), baseClasses);
+        AppendToClassAttr(attributes, baseClasses);
 
         if (Disabled)
         {
