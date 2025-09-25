@@ -1,4 +1,5 @@
-@using Soenneker.Quark.Dtos.Colors
+@using Soenneker.Quark.Components.Builders
+@using Soenneker.Quark.Components.Builders.Colors
 
 @inherits Soenneker.Quark.Components.Element
 
@@ -14,7 +15,7 @@
     public bool Disabled { get; set; }
 
     [Parameter]
-    public Color Color { get; set; } = Color.Primary;
+    public CssValue<ColorBuilder> Color { get; set; } = Components.Builders.Colors.Color.Primary;
 
     protected override Dictionary<string, object> BuildAttributes()
     {

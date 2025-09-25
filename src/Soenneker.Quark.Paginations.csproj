@@ -41,7 +41,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Soenneker.Quark.UnorderedLists" Version="3.0.14" />
-        <PackageReference Include="Soenneker.Quark.ListItems" Version="3.0.14" />
+        <PackageReference Include="Soenneker.Quark.UnorderedLists" Version="3.0.18" />
+        <PackageReference Include="Soenneker.Quark.ListItems" Version="3.0.17" />
     </ItemGroup>
 </Project>
