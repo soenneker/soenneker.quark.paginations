@@ -1,6 +1,3 @@
-@using Soenneker.Quark.Components.Builders
-@using Soenneker.Quark.Components.Builders.Colors
-
 @inherits Soenneker.Quark.Element
 
 <a @attributes="BuildAttributes()">
@@ -8,6 +5,8 @@
 </a>
 
 @code {
+	public override string? Name { get; set; } = "PaginationLink";
+
     [Parameter]
     public bool Active { get; set; }
 
@@ -15,7 +14,7 @@
     public bool Disabled { get; set; }
 
     [Parameter]
-    public CssValue<ColorBuilder> Color { get; set; } = Components.Builders.Colors.Color.Primary;
+    public CssValue<ColorBuilder> Color { get; set; } = Quark.Color.Primary;
 
     protected override Dictionary<string, object> BuildAttributes()
     {
