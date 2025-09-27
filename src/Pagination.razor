@@ -13,14 +13,14 @@
     public CssValue<ColorBuilder> Color { get; set; } = Quark.Color.Primary;
 
     [Parameter]
-    public Size Size { get; set; } = Size.Default;
+    public CssValue<SizeBuilder>? Size { get; set; } = Size.Default;
 
     [Parameter]
     public bool Vertical { get; set; }
 
     private string? GetSizeClass()
     {
-        if (Size != Size.Default)
+        if (Size != null && !Size.Value.IsEmpty)
             return $"pagination-{Size.Value}";
         return null;
     }
