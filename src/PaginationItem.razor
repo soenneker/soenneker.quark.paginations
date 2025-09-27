@@ -1,8 +1,8 @@
 @inherits Soenneker.Quark.Element
 
-<ListItem @attributes="BuildAttributes()">
+<UnorderedListItem @attributes="BuildAttributes()">
 	@ChildContent
-</ListItem>
+</UnorderedListItem>
 
 @code {
 	public override string? Name { get; set; } = "PaginationItem";
@@ -21,8 +21,10 @@
         Dictionary<string, object> attributes = base.BuildAttributes();
 
         var baseClasses = "page-item";
+
         if (Active)
             baseClasses = $"{baseClasses} active";
+
         if (Disabled)
             baseClasses = $"{baseClasses} disabled";
 

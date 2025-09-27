@@ -1,8 +1,8 @@
 @inherits Soenneker.Quark.Element
 
-<a @attributes="BuildAttributes()">
+<Anchor @attributes="BuildAttributes()">
 	@ChildContent
-</a>
+</Anchor>
 
 @code {
 	public override string? Name { get; set; } = "PaginationLink";
